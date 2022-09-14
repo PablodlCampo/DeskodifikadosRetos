@@ -8,7 +8,7 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\pdelcampo\\.nuget\\packages\\": {}
+    "C:\\Users\\Pablo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -16,11 +16,11 @@
       "projectUniqueName": "C:\\Proyectos\\Deskodificados\\DescodifikadosRetos\\Retos\\Retos.csproj",
       "projectName": "Retos",
       "projectPath": "C:\\Proyectos\\Deskodificados\\DescodifikadosRetos\\Retos\\Retos.csproj",
-      "packagesPath": "C:\\Users\\pdelcampo\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Pablo\\.nuget\\packages\\",
       "outputPath": "C:\\Proyectos\\Deskodificados\\DescodifikadosRetos\\Retos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pdelcampo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Pablo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,9 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://proget.openfinance.es/nuget/EAFINuget/": {},
-        "http://proget.openfinance.es/nuget/Growth/": {},
-        "http://proget.openfinance.es/nuget/OFNuget/": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -63,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }
