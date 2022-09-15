@@ -8,11 +8,12 @@ namespace Retos.Clases
 {
     public class Kaprekar
     {
+        const int numeroKaprekar = 6174;
+
         public void Calcular()
         {
             Console.WriteLine("Introduce un número de 4 dígitos");
             string numeroString = Console.ReadLine();
-
 
             if (numeroString.Length != 4)
             {
@@ -20,22 +21,45 @@ namespace Retos.Clases
             }
             else
             {
+                //La primera vez transformo el número a entero fuera del while
                 Int32.TryParse(numeroString, out int numeroExterior);
 
-                if (numeroExterior != 0)
+                int[] digitos = new int[4];
+                int resultadoResta = 0;
+                int contador = 0;
+
+                while (resultadoResta != numeroKaprekar)
                 {
-                    int[] digitos = new int[4];
-
-                    digitos = DescomponerNum(numeroString);
-
-                    if (NumeroCorrecto(digitos[0], digitos[1], digitos[2], digitos[3]))
+                    if (numeroExterior != 0)
                     {
-                        var ordenados = (int[])OrdenarNum(digitos, false).Clone();
-                        var ordenadosDos = (int[])OrdenarNum(digitos, true).Clone();
+                        digitos = DescomponerNum(numeroExterior);
 
-                        Console.WriteLine(ordenados[0].ToString() + ordenados[1].ToString() + ordenados[2].ToString() + ordenados[3].ToString());
-                        Console.WriteLine(ordenadosDos[0].ToString() + ordenadosDos[1].ToString() + ordenadosDos[2].ToString() + ordenadosDos[3].ToString());
+                        if (NumeroCorrecto(digitos[0], digitos[1], digitos[2], digitos[3]))
+                        {
+                            var minuendoArray = (int[])OrdenarNum(digitos, true).Clone();
+                            var sustraendoArray = (int[])OrdenarNum(digitos, false).Clone();
+
+                            int minuendo = Recomponer(minuendoArray);
+                            int sustraendo = Recomponer(sustraendoArray);
+
+                            Console.WriteLine($"Vuelta {contador} -> Minuendo: {minuendo}");
+                            Console.WriteLine($"Vuelta {contador} -> Sustraendo: {sustraendo}");
+
+                            resultadoResta = minuendo - sustraendo;
+
+                            Console.WriteLine($"Vuelta {contador} -> Resultado de la resta: {resultadoResta}");
+
+                            //asignamos al número a descomponer el resultado de la resta
+                            numeroExterior = resultadoResta;
+
+                            contador++;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Número incorrecto");
+                        }
                     }
+
                 }
             }
         }
@@ -78,24 +102,25 @@ namespace Retos.Clases
             return digitos;
         }
 
-        public static int[] DescomponerNum(string numeroString)
+        public static int[] DescomponerNum(int numeroExterior)
         {
             int[] digitos = new int[4];
 
+            int numeroExteriorInt = Int32.Parse(numeroExterior.ToString());
+
             //Descomposición matemática
-            //miles = numeroExterior / 1000;
-            //centenas = (numeroExterior / 100) % 10;
-            //decenas = (numeroExterior % 100) / 10;
-            //unidades = (numeroExterior % 100) % 10;
-
-            //descomposicion string
-            digitos[0] = Int32.Parse(numeroString[0].ToString());
-            digitos[1] = Int32.Parse(numeroString[1].ToString());
-            digitos[2] = Int32.Parse(numeroString[2].ToString());
-            digitos[3] = Int32.Parse(numeroString[3].ToString());
-
+            digitos[0] = numeroExteriorInt / 1000;
+            digitos[1] = (numeroExteriorInt / 100) % 10;
+            digitos[2] = (numeroExteriorInt % 100) / 10;
+            digitos[3] = (numeroExteriorInt % 100) % 10;
             return digitos;
+        }
 
+        public static int Recomponer(int[] digitos)
+        {
+            var numeroString = digitos[0].ToString() + digitos[1].ToString() + digitos[2].ToString() + digitos[3].ToString();
+
+            return Int32.Parse(numeroString);
         }
 
         public static bool NumeroCorrecto(int miles, int centenas, int decenas, int unidades)
